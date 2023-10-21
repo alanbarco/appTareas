@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="container py-5">
+    <section class="card card-body">
+        <h1 class="display-1 text-center">HOME</h1>
+        <p>Esta es mi primera aplicación desarrollado con Django realizado con un curso de Youtube, se trata de un CRUD básico sobre tareas,
+            se aplicaron conocimientos de autenticación, base de datos, estilos de diseño web, entre otros.</p>
+        </p>
+        {% if not user.is_authenticated %}         
+        <div class="text-center">
+            <a class="btn btn-secondary" href="/login">Iniciar Sesión</a>
+            <a class="btn btn-dark" href="/signup">Registrarse</a>
+        </div>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

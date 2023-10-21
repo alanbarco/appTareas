@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-3 py-5">TAREAS</h1>
+            {% for t in tasks %}
+                <ul class="list-group">
+                    <a href="{% url 'task_detail' t.id %}" class="list-group-item mb-3">
+                        
+                            <h1>
+                                {{t.title}}
+                                {% if t.important %}
+                                ❗❗❗❗❗
+                                {% endif %}
+                        </h1>
+                        <p>{{t.description}}</p>
+                        <p>Creado: {{t.created}}</p>
+                        
+                        {% if t.datecompleted == null %}
+                            <form action="{% url 'complete_task' t.id %}" method="POST" >
+                                {% csrf_token %}
+                                <button class="btn btn-success">Completo</button>
+                            </form>
+                        {% else %}
+                            <p>Terminada: {{t.datecompleted}}</p>
+                        {% endif %}
+                    </a>
+                </ul>
+                {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}
